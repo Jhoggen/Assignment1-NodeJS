@@ -1,4 +1,4 @@
-API WITH JOKES
+MEME GENERATOR
 
 npm init -y
 npm install
