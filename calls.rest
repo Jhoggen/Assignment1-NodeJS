@@ -1,6 +1,17 @@
-GET http://localhost:3000/
-
+GET http://localhost:3000/api/meme
 
 ### 
 
-POST http://localhost:3000/
+GET http://localhost:3000/api/local
+
+###
+
+POST http://localhost:3000/api/local
+Content-Type: application/json
+
+    {
+        "name": "MemeFour"       
+    }
+
+
+###
