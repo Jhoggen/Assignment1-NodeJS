@@ -13,7 +13,6 @@ router.post("/api/local", (req, res) => {
         if(!req.body || (!req.body.name)) {
             throw new Error("Data was not provided correctly")
         }
-        
         const memeExists = memeList.find(meme => meme.id == req.body.name)
         
         if(memeExists) {
@@ -25,7 +24,6 @@ router.post("/api/local", (req, res) => {
         memeList.push(newMeme)
 
         res.json({status: "New meme added!"})
-        
     } catch(err) {
         res.status(400).json(err.message)
     }

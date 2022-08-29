@@ -4,9 +4,17 @@ document.getElementById("getMemes").addEventListener("click", function() {
 document.getElementById("getLocalMemes").addEventListener("click", function() {
     getLocalMemes()
 })
+document.getElementById("clearMeme").addEventListener("click", function() {
+    clearMemes()
+})
+
+function clearMemes() {
+    document.getElementById("outputMemes").innerHTML = ""
+}
+
 
 async function getExternalMemes() {
-    const memeList = await fetch ("http://localhost:3000/api/meme")
+    const memeList = await fetch ("http://localhost:5000/api/meme")
     const getAllMemes = await memeList.json()
 
 
@@ -45,25 +53,34 @@ async function getExternalMemes() {
 
 
 async function getLocalMemes() {
-    const localMeme = await fetch ("http://localhost:3000/api/local")
+    const localMeme = await fetch ("http://localhost:5000/api/local")
     const getAllLocalMemes = await localMeme.json()
     console.log(getAllLocalMemes)
 
     
-    for (let i = 0; i < getAllLocalMemes.name.length; i++) {
-        const element = getAllLocalMemes.name[i];
+    for (let i = 0; i < getAllLocalMemes.length; i++) {
+        const element = getAllLocalMemes[i];
         console.log(element)
     
-        let main = document.getElementById("outputLocalMemes")
+        let main = document.getElementById("outputMemes")
         main.classList.add("main")
         
         let mainContainer = document.createElement("h2")
         mainContainer.classList.add("mainContainer")
-        mainContainer.innerText = getAllLocalMemes.name
+        mainContainer.innerText = element.name
 
-    
+        let imgContainer = document.createElement("div")
+        const src = element.url
+        imgContainer.classList.add("imgContainer")
+        let imgTag = document.createElement("img")
+        imgTag.src = src
 
-        main.append(mainContainer)
+        imgContainer.append(imgTag)
+        main.append(mainContainer, imgTag)
+        
     }
 }
+
+
+
 
