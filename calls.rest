@@ -1,16 +1,17 @@
-GET http://localhost:5000/api/meme
+GET http://localhost:3000/api/meme
 
 ### 
 
-GET http://localhost:5000/api/local
+GET http://localhost:3000/api/local
 
 ###
 
-POST http://localhost:5000/api/local
+POST http://localhost:3000/api/local
 Content-Type: application/json
 
     {
-        "name": "MemeFour"
+        "name": "MemeFour",
+        "url": "https://i.imgflip.com/jrj7.jpg"
     }
 
 

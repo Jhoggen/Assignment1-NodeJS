@@ -1,11 +1,17 @@
 document.getElementById("getMemes").addEventListener("click", function() {
     getExternalMemes()
 })
+
 document.getElementById("getLocalMemes").addEventListener("click", function() {
     getLocalMemes()
 })
+
 document.getElementById("clearMeme").addEventListener("click", function() {
     clearMemes()
+})
+
+document.getElementById("postMeme").addEventListener("click", function() {
+    postNewMeme()
 })
 
 function clearMemes() {
@@ -13,14 +19,13 @@ function clearMemes() {
 }
 
 
+
 async function getExternalMemes() {
-    const memeList = await fetch ("http://localhost:5000/api/meme")
+    const memeList = await fetch ("http://localhost:3000/api/meme")
     const getAllMemes = await memeList.json()
-
-
-    for (let i = 0; i < getAllMemes.data.memes.length; i++) {
-        const element = getAllMemes.data.memes[i];
-        console.log(element)
+    
+    const element = getAllMemes.data.memes
+    var listOfObject = element[Math.floor(Math.random()*element.length)];
         
         let main = document.getElementById("outputMemes")
 
@@ -31,11 +36,11 @@ async function getExternalMemes() {
     
         let textContainer = document.createElement("h2")
         textContainer.classList.add("textContainer")
-        mainContainer.innerText = element.name
+        mainContainer.innerText = listOfObject.name
     
 
         let imgContainer = document.createElement("div")
-        const src = element.url
+        const src = listOfObject.url
         imgContainer.classList.add("imgContainer")
         let imgTag = document.createElement("img")
         imgTag.src = src
@@ -44,8 +49,6 @@ async function getExternalMemes() {
         imgContainer.append(imgTag)
         main.append(mainContainer)
         mainContainer.append(textContainer, imgContainer)
-        
-    }
 
 }
 
@@ -53,24 +56,22 @@ async function getExternalMemes() {
 
 
 async function getLocalMemes() {
-    const localMeme = await fetch ("http://localhost:5000/api/local")
+    const localMeme = await fetch ("http://localhost:3000/api/local")
     const getAllLocalMemes = await localMeme.json()
     console.log(getAllLocalMemes)
 
+    var listOfObject = getAllLocalMemes[Math.floor(Math.random()*getAllLocalMemes.length)];
     
-    for (let i = 0; i < getAllLocalMemes.length; i++) {
-        const element = getAllLocalMemes[i];
-        console.log(element)
-    
+
         let main = document.getElementById("outputMemes")
         main.classList.add("main")
         
         let mainContainer = document.createElement("h2")
         mainContainer.classList.add("mainContainer")
-        mainContainer.innerText = element.name
+        mainContainer.innerText = listOfObject.name
 
         let imgContainer = document.createElement("div")
-        const src = element.url
+        const src = listOfObject.url
         imgContainer.classList.add("imgContainer")
         let imgTag = document.createElement("img")
         imgTag.src = src
@@ -78,9 +79,31 @@ async function getLocalMemes() {
         imgContainer.append(imgTag)
         main.append(mainContainer, imgTag)
         
-    }
 }
 
-
-
-
+async function postNewMeme() {
+    const inputMemeName = document.getElementById("memeName").value
+    const inputMemeUrl = document.getElementById("memeUrl").value
+    
+    const memeObj = {
+        name: inputMemeName,
+        url: inputMemeUrl
+    }
+    
+    try {
+        const config = {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(memeObj)
+        }
+        const response = await fetch("http://localhost:3000/api/local", config)
+        const result = response.json()
+        console.log(result.json() + "New Meme")
+        let newMeme = document.getElementById("newMeme")
+        newMeme.innerText = "New Meme added to the list"
+    }catch(err) {
+        console.log(err)
+    }
+}
