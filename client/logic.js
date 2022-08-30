@@ -26,6 +26,7 @@ async function getExternalMemes() {
     
     const element = getAllMemes.data.memes
     var listOfObject = element[Math.floor(Math.random()*element.length)];
+
         
         let main = document.getElementById("outputMemes")
 
@@ -44,6 +45,10 @@ async function getExternalMemes() {
         imgContainer.classList.add("imgContainer")
         let imgTag = document.createElement("img")
         imgTag.src = src
+
+        if(listOfObject) {
+            parent = listOfObject.parentNode;
+        }
 
 
         imgContainer.append(imgTag)
@@ -99,9 +104,7 @@ async function postNewMeme() {
             body: JSON.stringify(memeObj)
         }
         const response = await fetch("http://localhost:3000/api/local", urlFetch)
-        console.log(response + "New Meme added")
-
-
+        console.log("New Meme added")
         let newMeme = document.getElementById("newMeme")
         newMeme.innerText = "New Meme added to the list"
         
