@@ -99,10 +99,12 @@ async function postNewMeme() {
             body: JSON.stringify(memeObj)
         }
         const response = await fetch("http://localhost:3000/api/local", config)
+
         const result = response.json()
-        console.log(result.json() + "New Meme")
+        console.log(result + "New Meme")
         let newMeme = document.getElementById("newMeme")
         newMeme.innerText = "New Meme added to the list"
+        
     }catch(err) {
         console.log(err)
     }
