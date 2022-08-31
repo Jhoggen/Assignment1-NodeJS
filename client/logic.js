@@ -1,3 +1,5 @@
+
+
 document.getElementById("getMemes").addEventListener("click", function() {
     getExternalMemes()
 })
@@ -94,7 +96,6 @@ async function postNewMeme() {
         name: inputMemeName,
         url: inputMemeUrl
     }
-    
     try {
         const urlFetch = {
             method: "POST",
@@ -103,11 +104,10 @@ async function postNewMeme() {
             },
             body: JSON.stringify(memeObj)
         }
-        const response = await fetch("http://localhost:3000/api/local", urlFetch)
-        console.log("New Meme added")
+        console.log(memeObj)
+        await fetch("http://localhost:3000/api/local", urlFetch)
         let newMeme = document.getElementById("newMeme")
         newMeme.innerText = "New Meme added to the list"
-        
     }catch(err) {
         console.log(err)
     }
