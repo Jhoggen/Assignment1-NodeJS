@@ -3,14 +3,8 @@ I den här inlämningen skall du skapa en hemsida som visar information hämtat 
 
 GITHUB: https://github.com/Jhoggen/Assignment1-NodeJS
 
-npm init -y
-npm install
-npm i express
-npm i nodemon
-Ifall package.json inte följer med skriv in under "script":    "start": "nodemon index.js"
-och skriva in under "main": "type": "module"
-npm i cors
-npm i axios
+för att köra igång projektet:
+npm i 
 npm start
 
 1.Skapa ett API baserat på en valfri resurs (GET & POST). KLAR
