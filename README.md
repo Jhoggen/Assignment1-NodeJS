@@ -11,7 +11,7 @@ npm start
 2.Samtliga endpoints skall kunna nås via en REST Client fil (.rest). KLAR
 3.Datan som API:et hanterar sparas lokalt i serverfilen. KLAR
 4.Ett simpelt klient-gränssnitt skall finnas för att anropa ert API olika endpoints, samt visa upp resultatet vid GET anrop. KLAR
-5.Ert API skall hämta och data ifrån ett externt API och skicka vidare datan till klienten 
+5.Ert API skall hämta och data ifrån ett externt API och skicka vidare datan till klienten KLAR
 6.Git & GitHub har använts. KLAR
 7.Projektmappen innehåller en README.md fil (läs ovan för mer info). KLAR
 8.Uppgiften lämnas in i tid!. KLAR
